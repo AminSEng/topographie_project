@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Accueil – Observatoire climat Maroc 2024</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="app home-app">
+
+  <!-- Barre du haut réutilisée -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-icon">📊</span>
+      <div>
+        <h1>Observatoire climatologique – Maroc 2024</h1>
+        <p class="topbar-subtitle">Visualisation interactive des données ERA5 par région</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenu accueil -->
+  <main class="home-layout">
+    <section class="home-intro">
+      <h2>Choisissez le type de données à explorer</h2>
+      <p>
+        Consultez, pour chaque région du Maroc, les <strong>précipitations</strong> ou les
+        <strong>températures</strong> mensuelles de l’année 2024, avec cartes choroplèthes et graphiques.
+      </p>
+    </section>
+
+    <section class="home-options">
+      <!-- Carte précipitations -->
+      <a href="{{ url_for('precip_page') }}" class="home-card home-card-precip">
+        <div class="home-card-icon">🌧️</div>
+        <h3>Précipitations</h3>
+        <p>
+          Cumul mensuel des précipitations (mm) par région, avec choroplèthe,
+          slider temporel et graphique interactif.
+        </p>
+        <div class="home-badges">
+          <span class="badge">ERA5</span>
+          <span class="badge">2024</span>
+          <span class="badge">mm/mois</span>
+        </div>
+      </a>
+
+      <!-- Carte températures -->
+      <a href="{{ url_for('temp_page') }}" class="home-card home-card-temp">
+        <div class="home-card-icon">🌡️</div>
+        <h3>Températures</h3>
+        <p>
+          Température moyenne mensuelle (°C) par région, avec dégradé bleu → rouge
+          et série temporelle détaillée.
+        </p>
+        <div class="home-badges">
+          <span class="badge">ERA5</span>
+          <span class="badge">2024</span>
+          <span class="badge">°C</span>
+        </div>
+      </a>
+    </section>
+  </main>
+
+</div>
+</body>
+</html>

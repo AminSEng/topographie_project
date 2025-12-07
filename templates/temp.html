@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Températures – Maroc 2024</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-icon">🌡️</span>
+      <div>
+        <h1>Températures – Régions du Maroc</h1>
+        <p class="topbar-subtitle">Données ERA5 • température moyenne mensuelle 2024</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-layout-3cols">
+    <aside class="sidebar sidebar-left">
+      <section class="card">
+        <div class="card-header">
+          <span>📅 Période</span>
+        </div>
+        <div class="card-body">
+          <label for="monthRange" class="month-label">
+            Mois sélectionné :
+            <strong><span id="monthLabel">Jan</span> 2024</strong>
+          </label>
+          <input id="monthRange" type="range" min="1" max="12" step="1" value="1">
+          <p class="hint">Glisse pour voir l'évolution des températures par mois.</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-header">
+          <span>🎨 Légende (°C)</span>
+        </div>
+        <div class="card-body">
+          <div id="legend-scale"></div>
+          <div class="legend-extremes">
+            <span>Plus froid</span>
+            <span>Plus chaud</span>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <main class="map-center">
+      <div id="map"></div>
+    </main>
+
+    <aside class="sidebar sidebar-right">
+      <section class="card">
+        <div class="card-header">
+          <span>📊 Série temporelle</span>
+        </div>
+        <div class="card-body">
+          <h2 id="info-title">Clique sur une région</h2>
+          <p id="info-subtitle">Le graphique affichera la température moyenne mensuelle (°C).</p>
+          <div class="chart-container">
+            <canvas id="chart"></canvas>
+          </div>
+        </div>
+      </section>
+    </aside>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='main_temp.js') }}"></script>
+</body>
+</html>
