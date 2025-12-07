@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Précipitations – Maroc 2024</title>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="app">
+
+  <!-- BARRE DU HAUT -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-icon">🌧️</span>
+      <div>
+        <h1>Précipitations – Régions du Maroc</h1>
+        <p class="topbar-subtitle">Données ERA5 • cumul mensuel 2024</p>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <div class="stat-card">
+        <div class="stat-label">Précipitation moyenne</div>
+        <div class="stat-value" id="stat-mean">-- mm</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Régions</div>
+        <div class="stat-value">12</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3 COLONNES : GAUCHE = CONTROLES, CENTRE = CARTE, DROITE = GRAPHE -->
+  <div class="main-layout-3cols">
+
+    <!-- Colonne gauche : contrôles -->
+    <aside class="sidebar sidebar-left">
+
+      <!-- Période / mois -->
+      <section class="card">
+        <div class="card-header">
+          <span>📅 Période</span>
+        </div>
+        <div class="card-body">
+          <label for="monthRange" class="month-label">
+            Mois sélectionné :
+            <strong><span id="monthLabel">Jan</span> 2024</strong>
+          </label>
+          <input id="monthRange" type="range" min="1" max="12" step="1" value="1">
+          <p class="hint">
+            Glisse le curseur pour visualiser les précipitations par mois.
+          </p>
+        </div>
+      </section>
+
+      <!-- Légende -->
+      <section class="card">
+        <div class="card-header">
+          <span>🎨 Légende des précipitations</span>
+        </div>
+        <div class="card-body">
+          <div id="legend-scale"></div>
+          <div class="legend-extremes">
+            <span id="legend-min">Faibles</span>
+            <span id="legend-max">Fortes</span>
+          </div>
+          <p class="hint">
+            Les couleurs indiquent le cumul mensuel moyen (mm) par région.
+          </p>
+        </div>
+      </section>
+
+      <!-- Aide -->
+      <section class="card">
+        <div class="card-header">
+          <span>ℹ️ Aide</span>
+        </div>
+        <div class="card-body">
+          <ul class="help-list">
+            <li>Survole une région pour voir son nom.</li>
+            <li>Clique sur une région ou une ville pour afficher le graphique.</li>
+            <li>Utilise le curseur de mois pour voir l’évolution temporelle.</li>
+          </ul>
+        </div>
+      </section>
+
+    </aside>
+
+    <!-- Colonne centre : carte -->
+    <main class="map-center">
+      <div id="map"></div>
+    </main>
+
+    <!-- Colonne droite : infos + graphique -->
+    <aside class="sidebar sidebar-right">
+      <section class="card">
+        <div class="card-header">
+          <span>📊 Série temporelle</span>
+        </div>
+        <div class="card-body">
+          <h2 id="info-title">Clique sur une région ou une ville</h2>
+          <p id="info-subtitle">Le graphique affichera les précipitations mensuelles (mm).</p>
+
+          <div class="chart-container">
+            <canvas id="chart"></canvas>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+  </div>
+
+  <footer class="footer">
+    Source : ERA5 (Copernicus) • Application web de visualisation des précipitations 2024
+  </footer>
+</div>
+
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
