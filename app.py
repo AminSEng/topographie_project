@@ -2,11 +2,12 @@ import os
 import json
 from flask import Flask, render_template, jsonify
 
-BASE_DIR = r"C:\web mapping"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 VECTOR_DIR = os.path.join(BASE_DIR, "data", "vector")
+
 
 print("TEMPLATES_DIR =", TEMPLATES_DIR)
 print("STATIC_DIR    =", STATIC_DIR)
